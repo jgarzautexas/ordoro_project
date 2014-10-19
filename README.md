@@ -37,4 +37,4 @@ etc
 ```
 
 
-Running pytest from the terminal will run some simple test to make sure functionality is working. 
+Running pytest from the terminal will run some simple test to make sure functionality is working. This will not show any output, so it's best calling the ordoro_madness.py fill and change the api-url in the main function accordingly. 
