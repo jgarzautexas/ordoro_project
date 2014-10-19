@@ -17,10 +17,10 @@ Here are the steps to get started with testing.
     * pip install -r requirements.txt
 
 
-You can call the ordoro_madness.py module directly and uncomment the api_url in main function to call the desired json file. 
+You can execute the ordoro_madness.py module directly and uncomment the api_url in main function to call the desired json file. 
 ```
-python ordoro_madness.py
-
+$python ordoro_madness.py
+#Sample Output
 # Uniques Total 100
 vernon.fadel@denesik.com
 helyn67@cruickshankmckenzie.com
