@@ -10,6 +10,17 @@ import re
 
 import dateutil.parser
 
+
+def validate_json(json_data):
+    '''Simple json validator'''
+    try:
+        data = json.loads(json_data)
+
+    except ValueError, e:
+        data = False
+
+    return data
+
 def print_pretty_json(master_dict):
     '''
     Used for debuging to see python objs in a readable format

@@ -24,7 +24,8 @@ def ordoro_madness(api_url):
                        params={},
                        headers={},
                        verify=False)
-    if res.ok:
+
+    if res.ok and utils.validate_json(res.text):
 
         master_data = utils.marshal_data(res.json().get("data"))
 
@@ -41,7 +42,7 @@ def ordoro_madness(api_url):
             print login
 
     else:
-        logging.error("Bad Request")
+        logging.error("Bad Request or Invalid json.")
         raise
 
     return master_data
