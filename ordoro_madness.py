@@ -4,9 +4,27 @@ A big part of what we do at Ordoro is connect to a 3rd-party API, transform thei
 
 Write Python code to make an HTTP request for full.json attached to this gist and then output:
 
-list of distinct email addresses.
-user counts per domain if the domain has more than 1 user.
-users that logged in during the month of April.
+1. list of distinct email addresses.
+2. user counts per domain if the domain has more than 1 user.
+3. users that logged in during the month of April.
+
+Don't spend more than 1 hour working on the code. Use whatever libraries and code organization you think is best. Give instructions for running your code. If you have a question, just do what you think is right and explain why you did it.
+
+An example might look like this using minimal.json:
+
+>>> python ordoro_madness.py
+# uniques
+sjobs@apple.com
+muaddib@dune.com
+admin@nsa.com
+richard@piedpiper.com
+erlich@piedpiper.com
+# domains with > 1 user
+('piedpiper.com', 2)
+# april logins
+{'login_date': '2014-04-01T01:02:03+00:00', 'email': 'richard@piedpiper.com'}
+{'login_date': '2014-04-10T11:22:33+00:00', 'email': 'sjobs@apple.com'}
+{'login_date': '2014-04-24T14:12:34+00:00', 'email': 'admin@nsa.com'}
 
 '''
 
@@ -53,7 +71,7 @@ def main():
     Uncomment to test from module.
     '''
     api_url = "https://gist.githubusercontent.com/benweatherman/e25017016bed9625fc03/raw/145698b6185d1109f7b4a8c1576a4e862b8b52f7/full.json"
-    # api_url = 'https://gist.githubusercontent.com/benweatherman/e25017016bed9625fc03/raw/543ad1119fae380acfe3268e51a5c421c4288cb7/minimal.json'
+    api_url = 'https://gist.githubusercontent.com/benweatherman/e25017016bed9625fc03/raw/543ad1119fae380acfe3268e51a5c421c4288cb7/minimal.json'
     ordoro_madness(api_url)
     pass
 

@@ -61,14 +61,13 @@ def marshal_data(login_data):
                 # Clean extra whitespace and validate
                 strip_email = email.strip()
                 if validate_email(strip_email):
-                    # This overrides the unique dictionary.
-                    # Only used for uniqueness
-                    master_dict.get("uniques").update({strip_email: login})
-                    
-                    email_domain_val = get_email_domain(strip_email)[1:]
-                    email_domain_list.append(email_domain_val)
-                    email_domain_list.sort()
-                    master_dict['sorted_domains'] = email_domain_list
+                    if not master_dict.get("uniques").get(strip_email):
+                        # Only used for uniqueness
+                        # This overrides the unique dictionary.
+                        master_dict.get("uniques").update({strip_email: login})
+                        
+                        email_domain_val = get_email_domain(strip_email)[1:]
+                        email_domain_list.append(email_domain_val)
 
                 else:
                     continue
@@ -77,6 +76,10 @@ def marshal_data(login_data):
                     master_dict.get("april_logins").append(login)
             
     if email_domain_list:
+        # Testing sorted domain
+        # email_domain_list.sort()
+        # master_dict['sorted_domains'] = email_domain_list
+        
         domain_counter = Counter(email_domain_list)
         greater_than_one_list = get_email_domain_greater_than_one(
             domain_counter.most_common()
@@ -89,7 +92,7 @@ def marshal_data(login_data):
             key=operator.itemgetter('login_date')
         )
 
-    # print print_pretty_json(master_dict)
+    # print_pretty_json(master_dict)
 
     return master_dict
 
