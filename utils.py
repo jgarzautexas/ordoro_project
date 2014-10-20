@@ -65,15 +65,18 @@ def marshal_data(login_data):
                 if check_month_of_april(py_dt):
                     master_dict.get("april_logins").append(login)
             
+    if email_domain_list:
+        domain_counter = Counter(email_domain_list)
+        greater_than_one_list = get_email_domain_greater_than_one(
+            domain_counter.most_common()
+        )
 
-    domain_counter = Counter(email_domain_list)
-    greater_than_one_list = get_email_domain_greater_than_one(
-        domain_counter.most_common()
-    )
+        master_dict["domains"] = greater_than_one_list
 
-    master_dict["domains"] = greater_than_one_list
-
-    master_dict.get("april_logins").sort(key=operator.itemgetter('login_date'))
+    if master_dict.get("april_logins"):
+        master_dict.get("april_logins").sort(
+            key=operator.itemgetter('login_date')
+        )
 
     # print print_pretty_json(master_dict)
 
